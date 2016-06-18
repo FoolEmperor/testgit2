@@ -1,0 +1,172 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>demo.mcx</groupId>
+	<artifactId>springmvc_demo</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>springmvc_demo Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<jdk.version>1.6</jdk.version>
+		<spring.version>4.1.1.RELEASE</spring.version>
+		<jstl.version>1.2</jstl.version>
+		<junit.version>4.11</junit.version>
+		<logback.version>1.0.13</logback.version>
+		<jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
+		<jackson.version>2.5.0</jackson.version>
+		<hibernate.validator.version>5.1.2.Final</hibernate.validator.version>
+		<javax.validation.version>1.1.0.Final</javax.validation.version>
+	</properties>
+
+	<dependencies>
+		<!-- Unit Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+
+		<!-- Spring Core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${jcl-over-slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- spring mvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+
+		<!-- jstl -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+		<!-- json -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<!-- jsr303 validation dependencies -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${javax.validation.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.validator.version}</version>
+		</dependency>
+
+		<!-- Servlet dependencies -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>springmvc_demo</finalName>
+		<plugins>
+			<!-- For Maven Tomcat Plugin -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<!-- 发布URL -->
+					<url>http://localhost:8080/manager/text</url>
+					<!-- 是访问应用的路径 -->
+					<path>/springmvc_demo</path>
+					<!-- 是tomcat 的端口号 -->
+					<port>8080</port>
+					<!-- URL按UTF-8进行编码，这样就解决了中文参数乱码。 -->
+					<uriEncoding>UTF-8</uriEncoding>
+					<!-- 指定tomcat名称。（与settings.xml中的server名称一致，即使用其中配置的用户密码） -->
+					<server>TomcatServer</server>
+					<!-- 每次deploy是否更新 -->
+					<update>true</update>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

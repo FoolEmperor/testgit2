@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>Archetype Created Web Application</display-name>
+
+	<servlet>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<!-- 默认位置：/WEB-INF/{servlet-name}-servlet.xml （默认时可以不配置这里）-->
+			<param-value>classpath:spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- 容器(如:Tomcat)初始化参数   -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- 默认位置：/WEB-INF/{servlet-name}-servlet.xml （即使默认也必须配置）-->
+		<param-value>classpath:spring-mvc.xml</param-value>
+	</context-param>
+
+	<!-- 监听servletContext，启动contextConfigLocation中的spring配置信息 -->
+	<listener>
+		<listener-class>
+           org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+	</listener>
+	
+	<!-- 解决表单提交中文乱码 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>/WEB-INF/views/index.jsp</welcome-file>
+	</welcome-file-list>
+		
+</web-app>
